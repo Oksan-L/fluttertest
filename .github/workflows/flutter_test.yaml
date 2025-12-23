@@ -1,0 +1,65 @@
+name: Flutter Tests & Allure Report
+
+on:
+  push:
+    branches: [ "main" ] 
+  pull_request:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  test-and-report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Install JUnit Report Converter
+        run: dart pub global activate junitreport
+
+      - name: Run Flutter Tests
+        id: test
+        run: flutter test --machine > test-results.json
+        continue-on-error: true
+
+      - name: Convert to JUnit XML
+        run: |
+          export PATH="$PATH":"$HOME/.pub-cache/bin"
+          mkdir -p allure-results
+          tojunit --input test-results.json --output allure-results/report.xml
+
+      - name: Get Allure history
+        uses: actions/checkout@v4
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages       
+          path: gh-pages
+
+      - name: Build Allure Report
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        with:
+          allure_results: allure-results
+          allure_history: allure-history
+          keep_reports: 20
+
+      - name: Deploy report to Github Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages  
+          publish_dir: allure-history
