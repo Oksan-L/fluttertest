@@ -57,18 +57,18 @@ The project covers 15 test scenarios, ranging from simple UI checks to complex s
 
 | ID | Test Name | Description |
 | :--- | :--- | :--- |
-| **01** | `textTest` | Verifies the presence of "Hello World" text on the screen. |
-| **02** | `iconTest` | Checks if a specific Icon is present and verifies its color and type. |
-| **03** | `scrollTest` | Simulates scrolling through a list to find an item that is initially off-screen. |
-| **04** | `dragAndDropTest` | Tests the functionality of reordering items in a list via drag-and-drop. |
-| **05** | `animationTest` | Verifies functionality that involves time delays (Counter with delay). |
-| **06** | `loginSuccess` | **Happy Path:** Enters valid credentials and verifies navigation to the Home Page. |
-| **07** | `loginInvalidPassword` | **Negative:** Enters a wrong password and checks for the error message. |
-| **08** | `logout` | Verifies that clicking Logout returns the user to the Login Page. |
-| **09** | `validationEmptyFields` | Ensures the Login button is disabled or shows an error when fields are empty. |
-| **10** | `checkoutFlow` | **Fail/Safe Scenario:** Simulates a full purchase flow. Designed to handle missing buttons gracefully (checking `expect` logic). |
-| **11** | `dismissItem` | Tests the "Swipe to Delete" (Dismissible) functionality in a list. |
-| **12** | `dialogInteraction` | Verifies opening a Modal Dialog and interacting with its buttons (e.g., Confirm/Cancel). |
-| **13** | `navigationPop` | Verifies the functionality of the "Back" button (System Back or UI Back) from Cart to Products. |
-| **14** | `counterIncrementRandom` | Generates a **random number** (2-6), taps the button that many times, and verifies the counter value. |
-| **15** | `productStatePersistence` | Adds a **random number** of items to the cart, navigates away, returns, and verifies the cart count is preserved. |
+| **001** | `enterText` | Verifies that text can be entered into a TextField and is displayed correctly. |
+| **002** | `tap` | Checks that the Submit button responds to a tap event (verifies state change/text update). |
+| **003** | `waitFor` | Verifies that a widget appears in the widget tree after a 2-second delay. |
+| **004** | `waitForAbsent` | Ensures "Temporary message" text is initially present and then checks it is removed after an action. |
+| **005** | `scrollUntilVisible` | Simulates scrolling through a long list to find a specific item that is initially off-screen. |
+| **006** | `loginSuccess` | **Positive:** Enters valid credentials and verifies navigation to the Home Page. |
+| **007** | `loginInvalidPassword` | **Negative:** Enters a wrong password and checks for the error message. |
+| **008** | `logout` | Verifies that clicking Logout returns the user to the Login Page. |
+| **009** | `validationEmptyFields` | Ensures the Login button is disabled or shows an error when fields are empty. |
+| **010** | `checkoutFlow` | Simulates a full purchase flow. |
+| **011** | `dismissItem` | Tests the "Swipe to Delete" (Dismissible) functionality in a list. |
+| **012** | `dialogInteraction` | Verifies opening a Modal Dialog and interacting with its buttons (e.g., Confirm/Cancel). |
+| **013** | `navigationPop` | Verifies the functionality of the "Back" button (System Back or UI Back) from Cart to Products. |
+| **014** | `counterIncrementRandom` | Generates a random number (2-6), taps the button that many times, and verifies the counter value. |
+| **015** | `productStatePersistence` | Adds a random number of items to the cart, navigates away, returns, and verifies the cart count is preserved. |
